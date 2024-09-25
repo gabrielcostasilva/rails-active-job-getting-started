@@ -1,28 +1,40 @@
-# RAILS - ACTIVE JOB - GETTING STARTED PROJECT
-This project is an exercise of the official [Active Job Basics](https://guides.rubyonrails.org/active_job_basics.html) guide.
+# RAILS - ACTIVE JOB: SIDEKIQ
+This project extends the [original](https://github.com/gabrielcostasilva/rails-active-job-getting-started.git) by adding [Sidekiq](https://github.com/sidekiq/sidekiq/wiki/Active-Job) as a queuing backend for [Active Job](https://guides.rubyonrails.org/active_job_basics.html). A queuing backend is a system that manages the jobs in a queue, processing them in the order they were added. They are recommended in production since Rails Active Job mechanism is based in memory only.
 
 ## Project Overview
-This _Customer_ CRUD project is a use case for playing with the Active Job framework. 
+To add Sidekiq to the project, I followed these steps:
+1. Ran `bundle add sidekiq` [to add the gem to the project](https://maffan.medium.com/processing-background-jobs-using-sidekiq-gem-in-rails-7-part-i-5c71574ac479);
+2. [Configured Sidekiq](https://github.com/gabrielcostasilva/rails-active-job-getting-started/commit/e9f3ccfc25f53e8a203fe81a25331f7dd2689244) to be the default queuing backend by adding `config.active_job.queue_adapter = :sidekiq` to [`config/application.rb`](./config/application.rb);
+3. Started a Docker container with Redis, the database Sidekiq uses to store the jobs, by running `docker run -d -p 6379:6379 redis`. Notice you are going to need [Docker installed](https://docs.docker.com/engine/install/) in your machine;
+4. Configured the Sidekiq web interface by adding the following lines to [`config/routes.rb`](./config/routes.rb):
 
-These are the steps I followed to create this project:
-1. [Created CRUD scaffolding](https://github.com/gabrielcostasilva/rails-active-job-getting-started/commit/d51755adaa534a08be04017b24db48f48942632e): `rails g scaffold Customer name email`
-2. Created a job: `rails g job CustomerWelcome`
-3. [Added a welcome message](https://github.com/gabrielcostasilva/rails-active-job-getting-started/commit/7bd88f5d4e270d278f0073508d4b9f13053b0c08) to the [job file](./app/jobs/customer_welcome_job.rb)
-4. [Added to the controller](https://github.com/gabrielcostasilva/rails-active-job-getting-started/commit/34bff6736c356684d6ec0227fdb2adb23cbabb01) a call to the job: `CustomerWelcomeJob.perform_later`
+```ruby
+require 'sidekiq/web'
+mount Sidekiq::Web => '/sidekiq'
+```
+
+Thus, one can access the Sidekiq web interface at [http://localhost:3000/sidekiq](http://localhost:3000/sidekiq) and monitor the jobs being processed.
+
 
 ## Running the Project
-First off, ensure you have the prerequisites to run a rails application, [which are](https://guides.rubyonrails.org/getting_started.html#creating-a-new-rails-project-installing-rails):
-- Ruby
-- Rails
-- SQLite
+Follow the same steps as in the [original project](https://github.com/gabrielcostasilva/rails-active-job-getting-started.git).
 
-Then, clone this repository: `git clone https://github.com/gabrielcostasilva/rails-active-job-getting-started.git`
+However, notice this time you cannot see the welcome message in your terminal. Checking the [Sidekiq web interface](http://localhost:3000/sidekiq), you can see the jobs are queued to be processed. 
 
-Next, update the database by running **in the project folder**: `bin/rails db:migrate`
+<img src="./queued.png" />
 
-Finally, start the server with: `bin/rails server`
+Drilling down into the job details, you can see the queue (_default_) and the job waiting to be processed.
 
-> All these commands must be run from your console in the project folder.
+<img src="./queue.png" />
 
-Access the application at [http://localhost:3000/customers](http://localhost:3000/customers), create a new customer, and check the logs (your terminal) for the welcome message.
+Finally, the job waiting.
 
+<src="./job.png" />
+
+However, notice that the jobs are not being processed. To process the jobs, you are going to need to run the Sidekiq server by executing `bundle exec sidekiq` in a separate terminal window. This command starts the Sidekiq server, which is responsible for processing the jobs in the queue.
+
+<src="./process.png" />
+
+As result, you can see the queue is empty and a job was processed.
+
+<src="./result.png" />
