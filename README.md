@@ -29,12 +29,12 @@ Drilling down into the job details, you can see the queue (_default_) and the jo
 
 Finally, the job waiting.
 
-<src="./job.png" />
+<img src="./job.png" />
 
 However, notice that the jobs are not being processed. To process the jobs, you are going to need to run the Sidekiq server by executing `bundle exec sidekiq` in a separate terminal window. This command starts the Sidekiq server, which is responsible for processing the jobs in the queue.
 
-<src="./process.png" />
+<img src="./process.png" />
 
 As result, you can see the queue is empty and a job was processed.
 
-<src="./result.png" />
+<img src="./result.png" />
