@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   resources :customers
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -12,4 +14,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "customers#index"
+
+  # Mount Sidekiq's web UI on /sidekiq
+  mount Sidekiq::Web => "/sidekiq"
 end
