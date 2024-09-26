@@ -32,3 +32,12 @@ The following branches extend this current project as:
 
 - [Using Sidekiq as the queuing backend]([https://github.com/gabrielcostasilva/rails-getting-started/tree/auth-devise](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sidekiq))
 - [Using SQS as adapter for ActiveJob]([https://github.com/gabrielcostasilva/rails-getting-started/tree/postgres](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sqs))
+
+## Further References
+
+- [Rails Active Job Basics Guide](https://guides.rubyonrails.org/active_job_basics.html)
+- [Sidekiq official wiki](https://github.com/sidekiq/sidekiq/wiki)
+- [Processing Background Jobs Using Sidekiq Gem in Rails 7](https://maffan.medium.com/processing-background-jobs-using-sidekiq-gem-in-rails-7-part-i-5c71574ac479)
+- [An Introduction to Sidekiq for Ruby on Rails](https://blog.appsignal.com/2023/09/20/an-introduction-to-sidekiq-for-ruby-on-rails.html)
+- [Inspect Redis commands using MONITOR](https://thoughtbot.com/blog/inspect-redis-commands-using-monitor)
+- [Sidekiq scheduler](https://github.com/sidekiq-scheduler/sidekiq-scheduler)
