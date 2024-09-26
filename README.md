@@ -26,3 +26,9 @@ Finally, start the server with: `bin/rails server`
 
 Access the application at [http://localhost:3000/customers](http://localhost:3000/customers), create a new customer, and check the logs (your terminal) for the welcome message.
 
+## Project Branches
+
+The following branches extend this current project as:
+
+- [Using Sidekiq as the queuing backend]([https://github.com/gabrielcostasilva/rails-getting-started/tree/auth-devise](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sidekiq))
+- [Using SQS as adapter for ActiveJob]([https://github.com/gabrielcostasilva/rails-getting-started/tree/postgres](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sqs))
