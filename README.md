@@ -22,3 +22,10 @@ You can check your AWS SQS console to check the messages being enqueued.
 <img src="sqs-console.png">
 
 Like Sidekiq, you also need a worker to process the jobs. You can run the worker by executing in your terminal: `bundle exec aws_sqs_active_job --queue default`
+
+> A side note: SQS seems a bit limited when compared to Sidekiq. For instance, the documentation highlights _"you cannot schedule jobs for later than 15 minutes in the future"_.
+
+## References
+
+[Introducing new features for the aws-sdk-rails gem](https://aws.amazon.com/blogs/developer/introducing-new-features-for-the-aws-sdk-rails-gem/)
+[aws-sdk-rails](https://github.com/aws/aws-sdk-rails)
