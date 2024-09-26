@@ -1,0 +1,2 @@
+queues:
+  default: "https://sqs.<REGION>.amazonaws.com/<AWS-ACCOUNT>/MyQueue"
