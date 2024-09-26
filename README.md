@@ -19,7 +19,7 @@ Follow the same steps as in the [original project](https://github.com/gabrielcos
 
 You can check your AWS SQS console to check the messages being enqueued.
 
-<img src="sqs-console.png">
+<img src="./sqs-console.png">
 
 Like Sidekiq, you also need a worker to process the jobs. You can run the worker by executing in your terminal: `bundle exec aws_sqs_active_job --queue default`
 
