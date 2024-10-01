@@ -30,8 +30,8 @@ Access the application at [http://localhost:3000/customers](http://localhost:300
 
 The following branches extend this current project as:
 
-- [Using Sidekiq as the queuing backend]([https://github.com/gabrielcostasilva/rails-getting-started/tree/auth-devise](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sidekiq))
-- [Using SQS as adapter for ActiveJob]([https://github.com/gabrielcostasilva/rails-getting-started/tree/postgres](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sqs))
+- [Using Sidekiq as the queuing backend]([https://github.com/gabrielcostasilva/rails-getting-started/tree/auth-devise](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sidekiq)
+- [Using SQS as adapter for ActiveJob]([https://github.com/gabrielcostasilva/rails-getting-started/tree/postgres](https://github.com/gabrielcostasilva/rails-active-job-getting-started/tree/sqs)
 
 ## Further References
 
